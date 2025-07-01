@@ -12,14 +12,10 @@ export default function About() {
             </div>
             <div className="space-y-6">
               <p className="text-lg text-dark/80 dark:text-white/80 leading-relaxed">
-                I'm a passionate full-stack developer with over 5 years of experience creating digital solutions that
-                make a difference. My journey started with curiosity about how things work on the web, and it has
-                evolved into a love for crafting exceptional user experiences.
+               🚀 Hi, I'm Rohan Malo, a dedicated full-stack developer with two years of hands-on experience in crafting scalable web applications using the MERN stack and Spring Boot. From spearheading the development of an efficient LIMS platform at Swastya.ai, successfully implemented across multiple pathology labs, to creating innovative solutions like e-commerce apps and API services, I thrive on building practical software that addresses real-world challenges.
               </p>
               <p className="text-lg text-dark/80 dark:text-white/80 leading-relaxed">
-                I specialize in modern web technologies like React, Next.js, and Node.js, but I'm always eager to learn
-                new tools and frameworks. When I'm not coding, you'll find me contributing to open-source projects,
-                writing technical articles, or exploring the latest design trends.
+               Embracing a continuous learning mindset, I am constantly exploring, experimenting, and contributing to projects with a passion for clean code and optimized systems 💻✨. 
               </p>
             </div>
             <Button className="bg-dark dark:bg-primary text-white dark:text-dark hover:bg-dark/90 dark:hover:bg-primary/90 rounded-xl px-8 py-3 text-lg">

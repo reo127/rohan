@@ -55,7 +55,7 @@ export default function Hero() {
         </div>
 
         {/* Stats */}
-        <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+        {/* <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-3xl font-bold text-dark dark:text-white">50+</div>
@@ -74,7 +74,7 @@ export default function Hero() {
               <div className="text-dark/60 dark:text-white/60">Technologies</div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   )

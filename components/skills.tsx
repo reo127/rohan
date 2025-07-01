@@ -7,7 +7,7 @@ export default function Skills() {
     {
       title: "Frontend Development",
       icon: Code,
-      technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+      technologies: ["React", "Next.js", "JavaScript","TypeScript", "Tailwind CSS", "Bootstrap", "Material UI", "Shadcn", "Responsive Design", "RTK", "Zustand", "API integration"],
       bgColor: "bg-light dark:bg-gray-800",
       textColor: "text-dark dark:text-white",
       buttonColor: "bg-dark dark:bg-primary text-white dark:text-dark",
@@ -15,31 +15,31 @@ export default function Skills() {
     {
       title: "Backend Development",
       icon: Database,
-      technologies: ["Node.js", "Python", "PostgreSQL", "MongoDB"],
+      technologies: ["Node.js", "ExpressJs", "Python", "Java", "SpringBoot", "SQL","MySQL", "PostgreSQL", "NoSQL", "MongoDB"],
       bgColor: "bg-primary",
       textColor: "text-dark",
       buttonColor: "bg-dark text-white",
     },
-    {
-      title: "UI/UX Design",
-      icon: Palette,
-      technologies: ["Figma", "Adobe XD", "Photoshop", "Prototyping"],
-      bgColor: "bg-dark dark:bg-gray-900",
-      textColor: "text-white",
-      buttonColor: "bg-white dark:bg-primary text-dark",
-    },
-    {
-      title: "Web Technologies",
-      icon: Globe,
-      technologies: ["HTML5", "CSS3", "JavaScript", "REST APIs"],
-      bgColor: "bg-light dark:bg-gray-800",
-      textColor: "text-dark dark:text-white",
-      buttonColor: "bg-dark dark:bg-primary text-white dark:text-dark",
-    },
+    // {
+    //   title: "UI/UX Design",
+    //   icon: Palette,
+    //   technologies: ["Figma"],
+    //   bgColor: "bg-dark dark:bg-gray-900",
+    //   textColor: "text-white",
+    //   buttonColor: "bg-white dark:bg-primary text-dark",
+    // },
+    // {
+    //   title: "Web Technologies",
+    //   icon: Globe,
+    //   technologies: ["HTML5", "CSS3", "JavaScript", "REST APIs"],
+    //   bgColor: "bg-light dark:bg-gray-800",
+    //   textColor: "text-dark dark:text-white",
+    //   buttonColor: "bg-dark dark:bg-primary text-white dark:text-dark",
+    // },
     {
       title: "Mobile Development",
       icon: Smartphone,
-      technologies: ["React Native", "Flutter", "iOS", "Android"],
+      technologies: ["React Native", "iOS", "Android"],
       bgColor: "bg-primary",
       textColor: "text-dark",
       buttonColor: "bg-dark text-white",
@@ -47,7 +47,7 @@ export default function Skills() {
     {
       title: "DevOps & Tools",
       icon: Zap,
-      technologies: ["Git", "Docker", "AWS", "CI/CD"],
+      technologies: ["Git", "Docker", "GCP", "CI/CD"],
       bgColor: "bg-dark dark:bg-gray-900",
       textColor: "text-white",
       buttonColor: "bg-white dark:bg-primary text-dark",
@@ -93,7 +93,7 @@ export default function Skills() {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Button
+                  {/* <Button
                     className={`${skill.buttonColor} rounded-full px-6 py-2 flex items-center space-x-2 ${
                       skill.bgColor === "bg-primary"
                         ? "hover:bg-dark/90 hover:text-white"
@@ -104,12 +104,12 @@ export default function Skills() {
                   >
                     <ArrowRight className="w-4 h-4" />
                     <span>View Projects</span>
-                  </Button>
+                  </Button> */}
 
                   {/* Simple illustration placeholder */}
-                  <div className="w-24 h-16 bg-white/20 dark:bg-white/10 rounded-lg flex items-center justify-center">
+                  {/* <div className="w-24 h-16 bg-white/20 dark:bg-white/10 rounded-lg flex items-center justify-center">
                     <div className="w-8 h-8 bg-white/40 dark:bg-white/20 rounded"></div>
-                  </div>
+                  </div> */}
                 </div>
               </CardContent>
             </Card>
