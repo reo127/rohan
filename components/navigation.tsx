@@ -24,9 +24,9 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-dark dark:bg-primary rounded-sm flex items-center justify-center">
-              <span className="text-white dark:text-dark font-bold text-sm">AC</span>
+              <span className="text-white dark:text-dark font-bold text-sm">RM</span>
             </div>
-            <span className="text-2xl font-bold text-dark dark:text-white">Alex Chen</span>
+            <span className="text-2xl font-bold text-dark dark:text-white">Rohan Malo</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -43,12 +43,14 @@ export default function Navigation() {
           </div>
 
           {/* Theme Toggle & CTA Button */}
+          <a href="/rohanmalo.pdf"download="rohanmalo">
           <div className="hidden md:flex items-center space-x-4">
             <ThemeToggle />
             <Button className="bg-primary text-dark hover:bg-primary/90 border border-dark dark:border-primary rounded-xl px-6">
               Download Resume
             </Button>
           </div>
+          </a>
 
           {/* Mobile menu button */}
           <Button

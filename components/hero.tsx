@@ -25,13 +25,15 @@ export default function Hero() {
                 View My Work
                 <ArrowDown className="ml-2 w-4 h-4" />
               </Button>
-              <Button
-                variant="outline"
-                className="border-dark dark:border-primary text-dark dark:text-primary hover:bg-dark hover:text-white dark:hover:bg-primary dark:hover:text-dark rounded-xl px-8 py-3 text-lg bg-transparent dark:bg-transparent"
-              >
-                <Download className="mr-2 w-4 h-4" />
-                Download Resume
-              </Button>
+              <a href="/rohanmalo.pdf"download="rohanmalo">
+                <Button
+                  variant="outline"
+                  className="border-dark dark:border-primary text-dark dark:text-primary hover:bg-dark hover:text-white dark:hover:bg-primary dark:hover:text-dark rounded-xl px-8 py-3 text-lg bg-transparent dark:bg-transparent"
+                >
+                  <Download className="mr-2 w-4 h-4" />
+                  Download Resume
+                </Button>
+              </a>
             </div>
           </div>
 
