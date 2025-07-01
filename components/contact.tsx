@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, MapPin, Phone, Github, Linkedin, Twitter } from "lucide-react"
+import { Mail, MapPin, Phone, Github, Linkedin, Twitter, NotebookPen } from "lucide-react"
 
 export default function Contact() {
   return (
@@ -13,7 +13,7 @@ export default function Contact() {
           <div className="inline-block bg-primary px-2 py-1 rounded-lg mb-4">
             <h2 className="text-4xl font-bold text-dark">Get In Touch</h2>
           </div>
-          <p className="text-lg text-dark/80 dark:text-white/80">Let's discuss your next project or just say hello!</p>
+          <p className="text-lg text-dark/80 dark:text-white/80">Let's discuss next or just say hello!</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -34,7 +34,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-dark dark:text-white">Email</h4>
-                  <p className="text-dark/70 dark:text-white/70">alex.chen@example.com</p>
+                  <p className="text-dark/70 dark:text-white/70">64rohanmalo@gmail.com</p>
                 </div>
               </div>
 
@@ -44,7 +44,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-dark dark:text-white">Phone</h4>
-                  <p className="text-dark/70 dark:text-white/70">+1 (555) 123-4567</p>
+                  <p className="text-dark/70 dark:text-white/70">+91 6289038527</p>
                 </div>
               </div>
 
@@ -54,22 +54,25 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-dark dark:text-white">Location</h4>
-                  <p className="text-dark/70 dark:text-white/70">San Francisco, CA</p>
+                  <p className="text-dark/70 dark:text-white/70">Bangalore India</p>
                 </div>
               </div>
             </div>
 
             {/* Social Links */}
             <div className="pt-8">
-              <h4 className="font-semibold text-dark dark:text-white mb-4">Follow me</h4>
+              <h4 className="font-semibold text-dark dark:text-white mb-4">Where else you can find me</h4>
               <div className="flex space-x-4">
-                <Button
+                <a href="https://github.com/reo127" target="_blank">
+                  <Button
                   variant="outline"
                   size="sm"
                   className="border-dark dark:border-primary text-dark dark:text-primary hover:bg-dark hover:text-white dark:hover:bg-primary dark:hover:text-dark rounded-full bg-transparent dark:bg-transparent"
                 >
                   <Github className="w-4 h-4" />
                 </Button>
+                </a>
+                <a href="https://www.linkedin.com/in/rohan-malo-1bb400184/" target="_blank">
                 <Button
                   variant="outline"
                   size="sm"
@@ -77,13 +80,16 @@ export default function Contact() {
                 >
                   <Linkedin className="w-4 h-4" />
                 </Button>
+                </a>
+                <a href="https://rohan127.hashnode.dev/" target="_blank">
                 <Button
                   variant="outline"
                   size="sm"
                   className="border-dark dark:border-primary text-dark dark:text-primary hover:bg-dark hover:text-white dark:hover:bg-primary dark:hover:text-dark rounded-full bg-transparent dark:bg-transparent"
                 >
-                  <Twitter className="w-4 h-4" />
+                  <NotebookPen className="w-4 h-4" />
                 </Button>
+                </a>
               </div>
             </div>
           </div>
