@@ -32,6 +32,7 @@ export default function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
+               
               <Link
                 key={item.href}
                 href={item.href}
@@ -43,14 +44,14 @@ export default function Navigation() {
           </div>
 
           {/* Theme Toggle & CTA Button */}
-          <a href="/rohanmalo.pdf"download="rohanmalo">
           <div className="hidden md:flex items-center space-x-4">
             <ThemeToggle />
-            <Button className="bg-primary text-dark hover:bg-primary/90 border border-dark dark:border-primary rounded-xl px-6">
-              Download Resume
-            </Button>
+            <a href="/rohanmalo.pdf" download="rohanmalo">
+              <Button className="bg-primary text-dark hover:bg-primary/90 border border-dark dark:border-primary rounded-xl px-6">
+                Download Resume
+              </Button>
+            </a>
           </div>
-          </a>
 
           {/* Mobile menu button */}
           <Button

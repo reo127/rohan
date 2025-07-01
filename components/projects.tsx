@@ -7,29 +7,29 @@ export default function Projects() {
     {
       title: "E-Commerce Platform",
       description:
-        "A full-stack e-commerce solution built with React and Node.js, featuring user authentication, payment processing, and admin dashboard.",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      image: "/placeholder.svg?height=200&width=300",
-      liveUrl: "#",
-      githubUrl: "#",
+        "A full-stack e-commerce solution built with React and Node.js, featuring user authentication, and admin dashboard.",
+      technologies: ["React", "Node.js", "ExpressJs", "JWT", "MongoDB"],
+      image: "https://raw.githubusercontent.com/reo127/mernEcommerceApp/master/screenshots/home.png",
+      liveUrl: null,
+      githubUrl: "https://github.com/reo127/mernEcommerceApp",
     },
     {
-      title: "Task Management App",
+      title: "APISaga - Free Public APIs",
       description:
-        "A collaborative project management tool with real-time updates, team collaboration features, and advanced analytics.",
-      technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind"],
-      image: "/placeholder.svg?height=200&width=300",
-      liveUrl: "#",
-      githubUrl: "#",
+        "Free public apis for bigener frontend developers to learn api handing and for dummy data ",
+      technologies: ["NodeJs", "ExpressJs", "mongoose", "MongoDB", "JWT", "Vercel"],
+      image: "/freeapi.png",
+      liveUrl: null,
+      githubUrl: "https://github.com/reo127/apisaga",
     },
     {
-      title: "Weather Dashboard",
+      title: "Secret Santa Generator",
       description:
-        "A responsive weather application with location-based forecasts, interactive maps, and detailed weather analytics.",
-      technologies: ["Vue.js", "Chart.js", "OpenWeather API", "CSS3"],
+        "A secret santa generator that generates a random list of participants and their assigned secret santa using excel file.",
+      technologies: ["NextJs", "TailwindCss", "ExpressJs", "xlsx", "Vercel"],
       image: "/placeholder.svg?height=200&width=300",
-      liveUrl: "#",
-      githubUrl: "#",
+      liveUrl: "https://secret-santa-fe-gilt.vercel.app/",
+      githubUrl: "https://github.com/reo127/secret_santa_fe",
     },
   ]
 
@@ -74,21 +74,28 @@ export default function Projects() {
                 </div>
 
                 <div className="flex gap-3 pt-2">
-                  <Button
-                    size="sm"
-                    className="bg-dark dark:bg-primary text-white dark:text-dark hover:bg-dark/90 dark:hover:bg-primary/90 rounded-full flex items-center"
-                  >
-                    <ExternalLink className="w-3 h-3 mr-1" />
-                    Live
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="border-dark dark:border-primary text-dark dark:text-primary hover:bg-dark hover:text-white dark:hover:bg-primary dark:hover:text-dark rounded-full flex items-center bg-transparent dark:bg-transparent"
-                  >
-                    <Github className="w-3 h-3 mr-1" />
-                    Code
-                  </Button>
+                  {project.liveUrl === null ? "" :
+                    <a href={project.liveUrl} target="_blank">
+                      <Button
+                        size="sm"
+                        className="bg-dark dark:bg-primary text-white dark:text-dark hover:bg-dark/90 dark:hover:bg-primary/90 rounded-full flex items-center"
+                      >
+                        <ExternalLink className="w-3 h-3 mr-1" />
+                        Live
+                      </Button>
+                    </a>
+                  }
+
+                  <a href={project.githubUrl} target="_blank">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="border-dark dark:border-primary text-dark dark:text-primary hover:bg-dark hover:text-white dark:hover:bg-primary dark:hover:text-dark rounded-full flex items-center bg-transparent dark:bg-transparent"
+                    >
+                      <Github className="w-3 h-3 mr-1" />
+                      Code
+                    </Button>
+                  </a>
                 </div>
               </CardContent>
             </Card>

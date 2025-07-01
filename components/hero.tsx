@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { ArrowDown, Download } from "lucide-react"
 
@@ -21,7 +23,15 @@ export default function Hero() {
               to the success of a dynamic software development team and organization.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-dark dark:bg-primary text-white dark:text-dark hover:bg-dark/90 dark:hover:bg-primary/90 rounded-xl px-8 py-3 text-lg">
+              <Button 
+                className="bg-dark dark:bg-primary text-white dark:text-dark hover:bg-dark/90 dark:hover:bg-primary/90 rounded-xl px-8 py-3 text-lg"
+                onClick={() => {
+                  const el = document.getElementById('projects');
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
                 View My Work
                 <ArrowDown className="ml-2 w-4 h-4" />
               </Button>
