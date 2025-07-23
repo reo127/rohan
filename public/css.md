@@ -1,4 +1,3 @@
-
 # Introduction to CSS
 
 Welcome to the world of CSS! CSS stands for Cascading Style Sheets. It's the language we use to style our HTML documents. Think of HTML as the skeleton of a webpage and CSS as the clothes, colors, and overall look.
@@ -219,56 +218,248 @@ CSS Grid is another powerful layout system. It lets you create complex, two-dime
 **Example:**
 
 ```html
-<style>
-    .grid-container {
-        display: grid;
-        grid-template-columns: auto auto auto; /* Three columns */
-        background-color: #2196F3;
-        padding: 10px;
-    }
-    .grid-item {
-        background-color: rgba(255, 255, 255, 0.8);
-        border: 1px solid rgba(0, 0, 0, 0.8);
-        padding: 20px;
-        font-size: 30px;
-        text-align: center;
-    }
-</style>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="grid-container">
-  <div class="grid-item">1</div>
-  <div class="grid-item">2</div>
-  <div class="grid-item">3</div>
-  <div class="grid-item">4</div>
-  <div class="grid-item">5</div>
-  <div class="grid-item">6</div>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .parent{
+            display: grid;
+            /* grid-template-columns: 1fr 1fr 1fr; */
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .pragati,
+        .amruta,
+        .eshwari {
+            height: 150px;
+            width: 150px;
+            background-color: palevioletred;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="parent">
+        <div class="pragati">pragati</div>
+        <div class="amruta">Amruta</div>
+        <div class="eshwari"> Eshwari</div>
+        <div class="eshwari"> Eshwari</div>
+        <div class="eshwari"> Eshwari</div>
+        <div class="eshwari"> Eshwari</div>
+        <div class="eshwari"> Eshwari</div>
+        <div class="eshwari"> Eshwari</div>
+        <div class="eshwari"> Eshwari</div>
+    </div>
+
+</body>
+
+</html>
 ```
 
 ## CSS Position
 
 The `position` property specifies how an element is positioned in a document.
 
-*   `static`: The default value. Elements are positioned according to the normal flow of the page.
-*   `relative`: Positioned relative to its normal position.
-*   `absolute`: Positioned relative to the nearest positioned ancestor.
-*   `fixed`: Positioned relative to the viewport (the browser window). It always stays in the same place, even if the page is scrolled.
-*   `sticky`: A mix of `relative` and `fixed`. It's treated as `relative` until it crosses a specified threshold, at which point it becomes `fixed`.
+In CSS, the `position` property tells the browser **how an element should be placed** on the page. Here are the main types of positions:
+
+---
+
+## 1. `static` (Default Position)
+
+- This is the **default** position.
+- The element stays where it normally appears on the page.
+- You **can’t move it** using top, bottom, left, or right.
+
+✅ *Example:*  
+Like text or images that naturally flow from top to bottom.
+
+---
+
+## 2. `relative`
+
+- The element is placed in its **normal position**, but now you **can move it** using `top`, `bottom`, `left`, or `right`.
+- It moves **relative to where it would normally be.**
+
+✅ *Example:*  
+Think of a book on a table. You slide it a bit to the right — that’s relative movement.
+
+---
+
+## 3. `absolute`
+
+- The element is taken **out of the normal flow** — it doesn’t affect or get affected by nearby elements.
+- It’s positioned based on the **nearest positioned parent** (a parent with `relative`, `absolute`, or `fixed`).
+
+✅ *Example:*  
+Imagine putting a sticky note inside a box. You can place it anywhere inside the box.
+
+---
+
+## 4. `fixed`
+
+- The element is positioned based on the **browser window** (viewport), not the parent.
+- It **stays in the same place** even when you scroll the page.
+
+✅ *Example:*  
+Like a floating chat button that always stays in the corner of your screen.
+
+---
+
+## 5. `sticky`
+
+- Starts like `relative`, so it scrolls with the page.
+- But when it reaches a certain point (you set with `top`, `left`, etc.), it **sticks** in place like `fixed`.
+
+✅ *Example:*  
+Like a sticky header that scrolls with you, but then stays at the top.
+
+---
+
+## 🎯 Summary Table
+
+| Position | Moves With Scroll? | Based On                   | Can Use Top/Left/Right/Bottom? |
+|----------|--------------------|----------------------------|---------------------------------|
+| static   | ✅ Yes             | Normal flow                | ❌ No                          |
+| relative | ✅ Yes             | Its normal position        | ✅ Yes                         |
+| absolute | ❌ No              | Nearest positioned parent  | ✅ Yes                         |
+| fixed    | ❌ No              | Browser window             | ✅ Yes                         |
+| sticky   | ✅/❌ Mixed        | Scrolls, then sticks       | ✅ Yes                         |
+
+---
 
 **Example:**
 
 ```html
-<style>
-    .fixed-element {
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        width: 300px;
-        border: 3px solid #73AD21;
-    }
-</style>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="fixed-element">
-  This div has a fixed position.
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: royalblue;
+            margin: 10px;
+        }
+
+        .boxtwo {
+            /* background-color: red;
+           position: sticky;
+           top: 20px; */
+
+            position: fixed;
+            background-color: red;
+            bottom: 72px;
+            right: 20px;
+            border-radius: 50%;
+            text-align: center;
+        }
+
+        .parent {
+            margin-left: 100px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="box boxone">One</div>
+        <div class="box boxtwo">Komal</div>
+        <div class="box">three</div>
+        <div class="box">three</div>
+        <div class="box">three</div>
+        <div class="box">three</div>
+        <div class="box">three</div>
+        <div class="box">three</div>
+        <div class="box">three</div>
+        <div class="box">three</div>
+        <div class="box">three</div>
+        <div class="box">three</div>
+        <div class="box">three</div>
+        <div class="box">three</div>
+        <div class="box">three</div>
+        <div class="box">three</div>
+    </div>
+</body>
+
+</html>
+```
+
+## Hover
+
+The `:hover` pseudo-class is used to apply styles to an element when the user's mouse is over it.
+
+**Example:**
+
+```css
+.button:hover {
+  background-color: lightgray;
+}
+```
+
+## More CSS Properties
+
+Here are some other useful CSS properties demonstrated in `moreCSS.html`:
+
+*   `background-image`: Sets a background image for an element.
+*   `background-size`: Specifies the size of the background images.
+*   `background-repeat`: Sets if/how a background image will be repeated.
+*   `font-weight`: Sets how thick or thin characters in text should be displayed.
+*   `font-family`: Specifies the font for an element.
+
+**Example from `moreCSS.html`:**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mydogimage {
+            background-image: url("images/hellodog.jpg");
+            height: 100px;
+            width: 100px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .pragati {
+            font-weight: 900;
+            margin-left: 200px;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="mydogimage"></div>
+    <h1 class="pragati">pragati</h1>
+    <h1 class="someing">something</h1>
+
+</body>
+
+</html>
 ```
