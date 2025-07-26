@@ -868,4 +868,274 @@ function createStudentRecord(name, course, ...subjects) {
 
 let student1 = createStudentRecord("Priya", "CSE", "Math", "Physics", "Programming", "Database");
 console.log(student1);
-// Output: {studentName: "Priya", courseName: "CSE", subjectList: ["Math", "Physics", "Programming", "Database"], totalSubjects:
+// Output: {studentName: "Priya", courseName: "CSE", subjectList: ["Math", "Physics", "Programming", "Database"], totalSubjects: 4}
+---
+
+## 8. Control Flow Statements 🚦
+
+Control flow statements allow you to make decisions in your code. They control which lines of code are executed and when, based on certain conditions. Think of them as a traffic signal that directs the flow of traffic.
+
+### `if...else` Statement
+
+The `if...else` statement executes a block of code if a condition is true, and another block if the condition is false. It's like making a simple choice: "If it's raining, take an umbrella; otherwise, wear sunglasses."
+
+```javascript
+// Example: Age verification for driving
+let age = 15;
+
+if (age >= 18) {
+    console.log("You can drive a car.");
+} else {
+    console.log("You cannot drive a car.");
+}
+// Output: You cannot drive a car.
+
+let anotherAge = 20;
+if (anotherAge >= 18) {
+    console.log("You can drive a car."); // This block runs
+} else {
+    console.log("You cannot drive a car.");
+}
+// Output: You can drive a car.
+```
+
+### `else if` Statement
+
+Used for checking multiple conditions. It's like having a list of choices. "If it's morning, say 'Good Morning'. If it's afternoon, say 'Good Afternoon'. Otherwise, say 'Hello'."
+
+```javascript
+// Example: Greeting based on time of day
+let time = "afternoon";
+
+if (time === "morning") {
+    console.log("Good Morning");
+} else if (time === "afternoon") {
+    console.log("Good Afternoon");
+} else if (time === "evening") {
+    console.log("Good Evening");
+} else {
+    console.log("Hello!");
+}
+// Output: Good Afternoon
+```
+
+### Nested `if...else`
+
+You can put an `if...else` statement inside another one. This is useful for checking a condition that depends on another condition. "To get a passport, first, do you have an Aadhaar card? If yes, then do you also have a PAN card?"
+
+```javascript
+// Example: Passport eligibility
+let hasAadhaar = true;
+let hasPanCard = false;
+
+if (hasAadhaar === true) {
+    // Outer condition is true, check inner condition
+    if (hasPanCard === true) {
+        console.log("You can get your passport.");
+    } else {
+        console.log("You have Aadhaar but need a PAN card to get a passport.");
+    }
+} else {
+    console.log("You need an Aadhaar card first.");
+}
+// Output: You have Aadhaar but need a PAN card to get a passport.
+```
+
+### Ternary Operator (`? :`)
+
+A shortcut for the `if...else` statement. It's a clean way to write a simple condition in one line.
+
+**Syntax:** `condition ? value_if_true : value_if_false`
+
+```javascript
+// Example: Driving age check with ternary operator
+let userAge = 15;
+
+let message = userAge >= 18 ? "You can drive." : "You cannot drive.";
+console.log(message); // Output: You cannot drive.
+
+let anotherUserAge = 21;
+let anotherMessage = anotherUserAge >= 18 ? "You can drive." : "You cannot drive.";
+console.log(anotherMessage); // Output: You can drive.
+```
+
+### `switch` Statement
+
+The `switch` statement is used to perform different actions based on different conditions. It's like a menu at a restaurant where you choose an option (1 for pizza, 2 for a burger, etc.).
+
+```javascript
+// Example: Customer feedback rating
+let rating = 3;
+
+switch (rating) {
+    case 1:
+        console.log("Poor");
+        break; // 'break' stops the execution
+    case 2:
+        console.log("Average");
+        break;
+    case 3:
+        console.log("Good");
+        break;
+    case 4:
+        console.log("Excellent");
+        break;
+    default: // 'default' runs if no case matches
+        console.log("Invalid rating");
+}
+// Output: Good
+```
+
+### Practical Example: Calculating Grades
+
+This function uses `if...else if...else` to determine a student's grade based on their percentage.
+
+```javascript
+function calculateGrade(m1, m2, m3, m4, m5) {
+    let totalMarks = m1 + m2 + m3 + m4 + m5;
+    let percentage = (totalMarks / 500) * 100;
+
+    console.log("Your percentage is: " + percentage + "%");
+
+    if (percentage >= 90) {
+        return "Grade A";
+    } else if (percentage >= 70 && percentage < 90) {
+        return "Grade B";
+    } else if (percentage >= 50 && percentage < 70) {
+        return "Grade C";
+    } else {
+        return "Fail";
+    }
+}
+
+let myGrade = calculateGrade(85, 78, 92, 88, 75); // Percentage = 83.6%
+console.log(myGrade); // Output: Grade B
+
+let friendGrade = calculateGrade(95, 98, 90, 92, 91); // Percentage = 93.2%
+console.log(friendGrade); // Output: Grade A
+```
+
+---
+
+## 9. Arrow Functions (=>) 🏹
+
+Arrow functions are a shorter, more modern way to write functions in JavaScript. They are very popular and make the code cleaner.
+
+### Basic Arrow Function Syntax
+
+```javascript
+// Regular function
+function add(a, b) {
+    return a + b;
+}
+
+// Arrow function equivalent
+const addArrow = (a, b) => {
+    return a + b;
+};
+
+// If the function has only one line of code and it's a return statement,
+// you can make it even shorter!
+const subtract = (a, b) => a - b;
+
+console.log(add(5, 10));          // Output: 15
+console.log(addArrow(5, 10));     // Output: 15
+console.log(subtract(10, 4));     // Output: 6
+```
+
+### Arrow Functions with One Parameter
+
+If you have only one parameter, you can even remove the parentheses `()`.
+
+```javascript
+// Regular function
+function double(num) {
+    return num * 2;
+}
+
+// Arrow function equivalent
+const doubleArrow = num => num * 2;
+
+console.log(double(8));       // Output: 16
+console.log(doubleArrow(8));  // Output: 16
+```
+
+---
+
+## 10. Loops 🔄
+
+Loops are used to run the same block of code over and over again, as long as a certain condition is true. This is extremely useful for working with arrays or repeating any task.
+
+### The `for` Loop
+
+The `for` loop is the most common type of loop. It's perfect when you know exactly how many times you want to repeat the code.
+
+It has three parts:
+1.  **Initialization**: A counter variable is created (e.g., `let i = 0`).
+2.  **Condition**: The loop continues as long as this is true (e.g., `i < 5`).
+3.  **Increment**: The counter is updated after each loop run (e.g., `i++`).
+
+```javascript
+// A simple for loop that counts from 0 to 4
+for (let i = 0; i < 5; i++) {
+    console.log("The number is " + i);
+}
+// Output:
+// The number is 0
+// The number is 1
+// The number is 2
+// The number is 3
+// The number is 4
+```
+
+### Using a `for` Loop with an Array
+
+This is a very common use case. You can loop through an array to access each element.
+
+```javascript
+let courses = ["Math", "Physics", "Chemistry", "Biology"];
+
+// Loop through the courses array
+for (let i = 0; i < courses.length; i++) {
+    console.log("Course " + (i + 1) + ": " + courses[i]);
+}
+// Output:
+// Course 1: Math
+// Course 2: Physics
+// Course 3: Chemistry
+// Course 4: Biology
+```
+
+### The `while` Loop
+
+The `while` loop repeats a block of code as long as a condition is true. It's useful when you don't know in advance how many times the loop should run.
+
+```javascript
+// A simple while loop
+let count = 0;
+while (count < 3) {
+    console.log("Count is " + count);
+    count++; // Important: Don't forget to increment the counter!
+}
+// Output:
+// Count is 0
+// Count is 1
+// Count is 2
+```
+
+### Real-World Loop Example
+
+Let's calculate the total of marks in an array.
+
+```javascript
+let marks = [85, 92, 78, 96, 88];
+let total = 0;
+
+// Using a for loop to add up all the marks
+for (let i = 0; i < marks.length; i++) {
+    total += marks[i]; // total = total + marks[i]
+}
+
+console.log("The total marks are: " + total); // Output: The total marks are: 439
+```
+
