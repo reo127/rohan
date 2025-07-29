@@ -1139,3 +1139,831 @@ for (let i = 0; i < marks.length; i++) {
 console.log("The total marks are: " + total); // Output: The total marks are: 439
 ```
 
+---
+
+## 11. DOM Manipulation 🌳
+
+The Document Object Model (DOM) is a programming interface for web documents. It represents the page so that programs can change the document structure, style, and content. The DOM represents the document as a tree of objects; think of it as a family tree for your HTML elements.
+
+DOM manipulation is the process of using JavaScript to add, remove, or change HTML elements on a web page.
+
+### Selecting HTML Elements
+
+To manipulate an element, you first need to select it.
+
+**HTML for Examples:**
+```html
+<div id="main-container">
+    <h1 class="heading">Welcome, Students!</h1>
+    <p>This is a paragraph about our college.</p>
+    <ul>
+        <li>Computer Science</li>
+        <li>Electronics</li>
+        <li>Mechanical</li>
+    </ul>
+    <button id="change-btn">Click Me</button>
+</div>
+```
+
+| Method | Description | Example | 
+|---|---|---|
+| `getElementById()` | Selects a single element by its unique `id`. | `let main = document.getElementById('main-container');` |
+| `querySelector()` | Selects the **first** element that matches a CSS selector. | `let heading = document.querySelector('.heading');` |
+| `querySelectorAll()` | Selects **all** elements that match a CSS selector. | `let listItems = document.querySelectorAll('li');` |
+
+```javascript
+// Selecting a single element by its ID
+const mainContainer = document.getElementById('main-container');
+
+// Selecting the first element matching a CSS selector (e.g., a class)
+const heading = document.querySelector('.heading');
+
+// Selecting all elements matching a CSS selector (e.g., all list items)
+const listItems = document.querySelectorAll('li');
+
+console.log(mainContainer); // Shows the div element
+console.log(heading.innerText); // Output: Welcome, Students!
+console.log(listItems.length); // Output: 3
+```
+
+### Changing Element Content
+
+Once you select an element, you can change what it displays.
+
+-   `innerText`: Changes the text content of an element.
+-   `innerHTML`: Changes the HTML content inside an element.
+
+```javascript
+// Select the heading
+const pageHeading = document.querySelector('h1');
+
+// Change its text
+pageHeading.innerText = "Welcome to KLE College!";
+
+// Select the paragraph
+const paragraph = document.querySelector('p');
+
+// Change its HTML content to include bold text
+paragraph.innerHTML = "This is an <strong>updated</strong> paragraph.";
+```
+
+### Changing Element Styles and Attributes
+
+You can change CSS styles and HTML attributes (like `src` or `href`).
+
+```javascript
+// Select the heading
+const heading = document.querySelector('h1');
+
+// Change CSS properties using the .style property
+heading.style.color = "blue";
+heading.style.textAlign = "center";
+heading.style.backgroundColor = "#f0f0f0"; // Note: background-color becomes backgroundColor
+
+// Changing an attribute (e.g., if we had an image)
+// let logo = document.querySelector('#college-logo');
+// logo.src = 'new-logo.png'; // Changes the image source
+```
+
+### Adding and Removing CSS Classes
+
+It's often better to change classes than to apply styles directly in JavaScript.
+
+**CSS for Example:**
+```css
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
+```
+
+```javascript
+// Select the first list item
+const firstListItem = document.querySelector('li');
+
+// Add a class to it
+firstListItem.classList.add('highlight');
+
+// Remove the class after 2 seconds
+setTimeout(() => {
+    firstListItem.classList.remove('highlight');
+}, 2000);
+```
+
+### Creating and Adding New Elements
+
+You can create new elements from scratch and add them to the page.
+
+```javascript
+// 1. Create a new element
+const newListItem = document.createElement('li');
+
+// 2. Add content to it
+newListItem.innerText = "Civil Engineering";
+
+// 3. Select the parent element (the ul)
+const list = document.querySelector('ul');
+
+// 4. Append the new element to the parent
+list.appendChild(newListItem);
+```
+
+### Handling Events
+
+JavaScript becomes truly interactive when you respond to user actions like clicks, mouse movements, or key presses. The `addEventListener()` method is the modern way to do this.
+
+```javascript
+// Select the button
+const changeButton = document.getElementById('change-btn');
+
+// Add a 'click' event listener
+changeButton.addEventListener('click', () => {
+    // This code runs every time the button is clicked
+    const container = document.getElementById('main-container');
+    container.style.border = "2px solid red";
+
+    const heading = document.querySelector('h1');
+    heading.innerText = "Button Clicked!";
+});
+```
+
+---
+
+## 11. Array Methods 📋
+
+Array methods are like **special tools** that help you work with arrays more easily. Instead of writing loops every time, these methods do the work for you!
+
+### forEach() - Do Something with Each Element
+
+`forEach()` goes through each element in an array and performs an action. It's like visiting each student in a classroom one by one.
+
+```javascript
+let students = ["Priya", "Rahul", "Anjali", "Vikram"];
+
+// Using forEach to greet each student
+students.forEach(function(student) {
+    console.log("Hello " + student + "!");
+});
+// Output:
+// Hello Priya!
+// Hello Rahul!
+// Hello Anjali!
+// Hello Vikram!
+
+// Same thing with arrow function (shorter way)
+students.forEach(student => {
+    console.log("Welcome " + student);
+});
+
+// Real example: Adding attendance
+let attendance = [];
+students.forEach(student => {
+    attendance.push(student + " - Present");
+});
+console.log(attendance);
+// Output: ["Priya - Present", "Rahul - Present", "Anjali - Present", "Vikram - Present"]
+```
+
+### map() - Transform Each Element
+
+`map()` creates a **new array** by transforming each element of the original array. It's like taking a list of numbers and converting each one to its double.
+
+```javascript
+let marks = [75, 85, 92, 68, 78];
+
+// Create a new array with each mark increased by 5 (bonus marks)
+let bonusMarks = marks.map(function(mark) {
+    return mark + 5;
+});
+
+console.log("Original marks:", marks);        // Output: [75, 85, 92, 68, 78]
+console.log("After bonus:", bonusMarks);      // Output: [80, 90, 97, 73, 83]
+
+// Using arrow function (shorter)
+let doubledMarks = marks.map(mark => mark * 2);
+console.log("Doubled marks:", doubledMarks);  // Output: [150, 170, 184, 136, 156]
+
+// Real example: Converting marks to grades
+let grades = marks.map(mark => {
+    if (mark >= 90) return "A";
+    if (mark >= 80) return "B";
+    if (mark >= 70) return "C";
+    return "D";
+});
+console.log("Grades:", grades);               // Output: ["C", "B", "A", "D", "C"]
+
+// Another example: Adding "Mr." to names
+let maleStudents = ["Rahul", "Vikram", "Amit"];
+let formalNames = maleStudents.map(name => "Mr. " + name);
+console.log(formalNames);                     // Output: ["Mr. Rahul", "Mr. Vikram", "Mr. Amit"]
+```
+
+### filter() - Select Elements Based on Condition
+
+`filter()` creates a **new array** with only the elements that pass a test. It's like selecting only the students who scored above 80.
+
+```javascript
+let allMarks = [75, 85, 92, 68, 78, 95, 82];
+
+// Filter students who scored above 80
+let highScorers = allMarks.filter(function(mark) {
+    return mark > 80;
+});
+
+console.log("All marks:", allMarks);          // Output: [75, 85, 92, 68, 78, 95, 82]
+console.log("High scorers:", highScorers);    // Output: [85, 92, 95, 82]
+
+// Using arrow function
+let lowScorers = allMarks.filter(mark => mark < 75);
+console.log("Low scorers:", lowScorers);      // Output: [68]
+
+// Real example: Filter students by attendance
+let studentData = [
+    {name: "Priya", attendance: 85},
+    {name: "Rahul", attendance: 72},
+    {name: "Anjali", attendance: 90},
+    {name: "Vikram", attendance: 65}
+];
+
+let eligibleStudents = studentData.filter(student => student.attendance >= 75);
+console.log("Eligible for exam:", eligibleStudents);
+// Output: [{name: "Priya", attendance: 85}, {name: "Anjali", attendance: 90}]
+
+// Another example: Filter even numbers
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let evenNumbers = numbers.filter(num => num % 2 === 0);
+console.log("Even numbers:", evenNumbers);    // Output: [2, 4, 6, 8, 10]
+```
+
+### Combining Array Methods
+
+You can use multiple array methods together to create powerful data processing chains.
+
+```javascript
+let studentMarks = [45, 78, 85, 92, 38, 67, 88, 95];
+
+// 1. Filter passing students (>= 40)
+// 2. Add bonus marks (+5)  
+// 3. Convert to grades
+let finalGrades = studentMarks
+    .filter(mark => mark >= 40)           // Keep only passing marks
+    .map(mark => mark + 5)                // Add bonus marks
+    .map(mark => {                        // Convert to grades
+        if (mark >= 90) return "A";
+        if (mark >= 80) return "B";
+        if (mark >= 70) return "C";
+        return "D";
+    });
+
+console.log("Original marks:", studentMarks);
+console.log("Final grades:", finalGrades);
+// Output: Final grades: ["C", "B", "A", "A", "C", "B", "A"]
+```
+
+---
+
+## 12. Asynchronous Programming ⏰
+
+**Synchronous vs Asynchronous** - Think of synchronous code like standing in a queue at a bank. You wait for the person in front to finish before you can proceed. Asynchronous code is like ordering food online - you place the order and continue doing other things while waiting for delivery.
+
+### Understanding the Problem
+
+```javascript
+// Synchronous code - everything happens in order
+console.log("First");
+console.log("Second");  
+console.log("Third");
+// Output: First, Second, Third (always in this order)
+
+// But what if "Second" takes time? Like fetching data from internet?
+console.log("First");
+// Imagine this takes 3 seconds to get data from server
+setTimeout(() => {
+    console.log("Data from server");
+}, 3000);
+console.log("Third");
+// Output: First, Third, (3 seconds later) Data from server
+```
+
+### setTimeout() - Basic Asynchronous Function
+
+`setTimeout()` runs code after a specified delay. It doesn't block other code from running.
+
+```javascript
+console.log("Starting food order...");
+
+setTimeout(() => {
+    console.log("Pizza is ready!");
+}, 2000); // 2000 milliseconds = 2 seconds
+
+console.log("Continuing with other work...");
+
+// Output:
+// Starting food order...
+// Continuing with other work...
+// (2 seconds later) Pizza is ready!
+
+// Real example: Simulating data loading
+console.log("Loading student data...");
+
+setTimeout(() => {
+    let studentData = {name: "Priya", marks: 85};
+    console.log("Data loaded:", studentData);
+}, 1500);
+
+console.log("Preparing UI...");
+console.log("UI ready, waiting for data...");
+
+// Output:
+// Loading student data...
+// Preparing UI...
+// UI ready, waiting for data...
+// (1.5 seconds later) Data loaded: {name: "Priya", marks: 85}
+```
+
+---
+
+## 13. Promises 🤝
+
+A **Promise** is like making a promise to your friend. You promise to return their book tomorrow. Three things can happen:
+1. **Pending**: You haven't returned it yet (promise is still being fulfilled)
+2. **Fulfilled/Resolved**: You returned the book (promise kept)
+3. **Rejected**: You lost the book (promise broken)
+
+### Creating a Basic Promise
+
+```javascript
+// Creating a promise that simulates checking if a student passes
+let checkResult = new Promise((resolve, reject) => {
+    let marks = 75;
+    
+    // Simulate some processing time
+    setTimeout(() => {
+        if (marks >= 40) {
+            resolve("Student passed with " + marks + " marks!"); // Promise fulfilled
+        } else {
+            reject("Student failed with " + marks + " marks."); // Promise rejected
+        }
+    }, 2000);
+});
+
+// Using the promise
+checkResult
+    .then((successMessage) => {
+        console.log("Good news: " + successMessage);
+    })
+    .catch((errorMessage) => {
+        console.log("Bad news: " + errorMessage);
+    });
+
+// Output (after 2 seconds): Good news: Student passed with 75 marks!
+```
+
+### Real-World Promise Example
+
+```javascript
+// Simulating fetching student data from a server
+function getStudentData(studentId) {
+    return new Promise((resolve, reject) => {
+        console.log("Fetching data for student ID: " + studentId);
+        
+        // Simulate network delay
+        setTimeout(() => {
+            // Simulate sometimes the server might be down
+            let serverWorking = true;
+            
+            if (serverWorking) {
+                let studentData = {
+                    id: studentId,
+                    name: "Priya Sharma",
+                    course: "Computer Science",
+                    semester: 4
+                };
+                resolve(studentData); // Success!
+            } else {
+                reject("Server is down. Please try again later."); // Failure!
+            }
+        }, 1500);
+    });
+}
+
+// Using the promise
+getStudentData("2024CSE001")
+    .then((student) => {
+        console.log("Student found:");
+        console.log("Name: " + student.name);
+        console.log("Course: " + student.course);
+        console.log("Semester: " + student.semester);
+    })
+    .catch((error) => {
+        console.log("Error: " + error);
+    });
+
+// Output (after 1.5 seconds):
+// Fetching data for student ID: 2024CSE001
+// Student found:
+// Name: Priya Sharma
+// Course: Computer Science
+// Semester: 4
+```
+
+### Promise Chaining
+
+You can chain multiple promises together. It's like a series of steps that depend on each other.
+
+```javascript
+// Simulating a multi-step process: Login → Get Profile → Get Courses
+function loginUser(username, password) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (username === "student123" && password === "password") {
+                resolve({userId: 1, username: username});
+            } else {
+                reject("Invalid credentials");
+            }
+        }, 1000);
+    });
+}
+
+function getUserProfile(userId) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve({
+                userId: userId,
+                name: "Priya Sharma",
+                email: "priya@klecollege.edu"
+            });
+        }, 800);
+    });
+}
+
+function getUserCourses(userId) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(["Math", "Physics", "Programming", "Database"]);
+        }, 600);
+    });
+}
+
+// Chaining promises
+loginUser("student123", "password")
+    .then((loginData) => {
+        console.log("Login successful for: " + loginData.username);
+        return getUserProfile(loginData.userId); // Return another promise
+    })
+    .then((profile) => {
+        console.log("Profile loaded for: " + profile.name);
+        return getUserCourses(profile.userId); // Return another promise
+    })
+    .then((courses) => {
+        console.log("Courses: " + courses.join(", "));
+    })
+    .catch((error) => {
+        console.log("Something went wrong: " + error);
+    });
+
+// Output:
+// Login successful for: student123
+// Profile loaded for: Priya Sharma
+// Courses: Math, Physics, Programming, Database
+```
+
+---
+
+## 14. Try-Catch (Error Handling) 🛡️
+
+**Try-catch** is like having a safety net when performing dangerous stunts. If something goes wrong, the safety net catches you and prevents a crash.
+
+### Basic Try-Catch
+
+```javascript
+// Code that might cause an error
+try {
+    // Try to do something that might fail
+    let result = 10 / 0; // This works fine in JavaScript
+    console.log("Result: " + result); // Output: Result: Infinity
+    
+    // This will cause an error
+    let student = null;
+    console.log(student.name); // Error! Cannot read property 'name' of null
+    
+} catch (error) {
+    // This code runs if there's an error
+    console.log("Oops! Something went wrong: " + error.message);
+}
+
+console.log("Program continues to run...");
+
+// Output:
+// Result: Infinity
+// Oops! Something went wrong: Cannot read properties of null (reading 'name')
+// Program continues to run...
+```
+
+### Try-Catch with Real Examples
+
+```javascript
+// Example 1: Safe division
+function safeDivision(a, b) {
+    try {
+        if (b === 0) {
+            throw new Error("Cannot divide by zero!"); // Manually throwing an error
+        }
+        let result = a / b;
+        return result;
+    } catch (error) {
+        console.log("Math error: " + error.message);
+        return "Error occurred";
+    }
+}
+
+console.log(safeDivision(10, 2)); // Output: 5
+console.log(safeDivision(10, 0)); // Output: Math error: Cannot divide by zero! \n Error occurred
+
+// Example 2: Safe JSON parsing
+function parseStudentData(jsonString) {
+    try {
+        let student = JSON.parse(jsonString);
+        console.log("Student name: " + student.name);
+        console.log("Student course: " + student.course);
+        return student;
+    } catch (error) {
+        console.log("Invalid data format: " + error.message);
+        return null;
+    }
+}
+
+// Valid JSON
+let validData = '{"name": "Priya", "course": "CSE"}';
+parseStudentData(validData);
+// Output: Student name: Priya \n Student course: CSE
+
+// Invalid JSON
+let invalidData = '{"name": "Priya", "course":}'; // Missing value
+parseStudentData(invalidData);
+// Output: Invalid data format: Unexpected token } in JSON at position 26
+```
+
+### Try-Catch with Promises
+
+```javascript
+// Using try-catch with async operations
+function fetchStudentData(studentId) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (studentId === "INVALID") {
+                reject(new Error("Student not found"));
+            } else {
+                resolve({id: studentId, name: "Rahul Verma"});
+            }
+        }, 1000);
+    });
+}
+
+// Using try-catch with promises
+async function getStudent(studentId) {
+    try {
+        console.log("Fetching student data...");
+        let student = await fetchStudentData(studentId);
+        console.log("Student found: " + student.name);
+    } catch (error) {
+        console.log("Failed to get student: " + error.message);
+    }
+}
+
+getStudent("2024CSE001"); // Success case
+getStudent("INVALID");    // Error case
+```
+
+---
+
+## 15. API Handling (GET and POST) 🌐
+
+**API** (Application Programming Interface) is like a waiter in a restaurant. You (your code) tell the waiter (API) what you want, and the waiter brings it from the kitchen (server).
+
+**GET** = Asking for information (like checking your bank balance)
+**POST** = Sending information (like transferring money)
+
+### Understanding APIs with Real Examples
+
+```javascript
+// What is an API call?
+// Imagine you want to get weather information:
+// 1. You ask: "What's the weather in Belagavi?"
+// 2. API goes to weather server
+// 3. API brings back: "Sunny, 28°C"
+
+// In code, it looks like this:
+// fetch("https://weather-api.com/belagavi") - This is a GET request
+//   .then(response => response.json())
+//   .then(data => console.log(data));
+```
+
+### GET Request - Fetching Data
+
+```javascript
+// Basic GET request using fetch()
+// fetch() returns a Promise, so we use .then()
+
+function getStudentList() {
+    console.log("Fetching student list...");
+    
+    // This is a fake API URL for demonstration
+    fetch("https://jsonplaceholder.typicode.com/users")
+        .then(response => {
+            // Check if the request was successful
+            if (response.ok) {
+                return response.json(); // Convert response to JSON
+            } else {
+                throw new Error("Failed to fetch students");
+            }
+        })
+        .then(students => {
+            // This runs when data is successfully received
+            console.log("Students received:");
+            students.forEach(student => {
+                console.log("- " + student.name + " (" + student.email + ")");
+            });
+        })
+        .catch(error => {
+            // This runs if something goes wrong
+            console.log("Error: " + error.message);
+        });
+}
+
+// Call the function
+getStudentList();
+
+// Example with a more college-relevant scenario
+function getCollegeCourses() {
+    console.log("Loading available courses...");
+    
+    // Simulating a college API
+    fetch("https://api.klecollege.edu/courses") // This URL is imaginary
+        .then(response => response.json())
+        .then(courses => {
+            console.log("Available courses:");
+            courses.forEach(course => {
+                console.log(`${course.name} - ${course.duration} - ₹${course.fees}`);
+            });
+        })
+        .catch(error => {
+            console.log("Could not load courses: " + error.message);
+        });
+}
+```
+
+### POST Request - Sending Data
+
+```javascript
+// Basic POST request - sending data to server
+function submitStudentApplication(studentData) {
+    console.log("Submitting application for: " + studentData.name);
+    
+    fetch("https://api.klecollege.edu/applications", {
+        method: "POST", // We're sending data
+        headers: {
+            "Content-Type": "application/json" // We're sending JSON data
+        },
+        body: JSON.stringify(studentData) // Convert our data to JSON string
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("Application submission failed");
+        }
+    })
+    .then(result => {
+        console.log("Application submitted successfully!");
+        console.log("Application ID: " + result.applicationId);
+        console.log("Status: " + result.status);
+    })
+    .catch(error => {
+        console.log("Submission error: " + error.message);
+    });
+}
+
+// Example usage
+let newApplication = {
+    name: "Priya Sharma",
+    email: "priya@example.com",
+    course: "Computer Science",
+    phone: "9876543210",
+    address: "Belagavi, Karnataka"
+};
+
+submitStudentApplication(newApplication);
+
+// Another POST example - updating student marks
+function updateStudentMarks(studentId, marksData) {
+    console.log("Updating marks for student: " + studentId);
+    
+    fetch(`https://api.klecollege.edu/students/${studentId}/marks`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer your-auth-token" // Often needed for security
+        },
+        body: JSON.stringify(marksData)
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log("Marks updated successfully!");
+        console.log("New total: " + result.totalMarks);
+        console.log("New percentage: " + result.percentage + "%");
+    })
+    .catch(error => {
+        console.log("Failed to update marks: " + error.message);
+    });
+}
+
+// Example usage
+let marksData = {
+    subject: "Mathematics",
+    marks: 85,
+    maxMarks: 100
+};
+
+updateStudentMarks("2024CSE001", marksData);
+```
+
+### Modern Async/Await Approach
+
+```javascript
+// Using async/await makes the code more readable
+// It's the modern way to handle promises
+
+async function getStudentData(studentId) {
+    try {
+        console.log("Fetching student data...");
+        
+        // GET request
+        let response = await fetch(`https://api.klecollege.edu/students/${studentId}`);
+        
+        if (!response.ok) {
+            throw new Error("Student not found");
+        }
+        
+        let student = await response.json();
+        
+        console.log("Student found:");
+        console.log("Name: " + student.name);
+        console.log("Course: " + student.course);
+        console.log("Semester: " + student.semester);
+        
+        return student;
+        
+    } catch (error) {
+        console.log("Error getting student data: " + error.message);
+        return null;
+    }
+}
+
+async function createNewStudent(studentInfo) {
+    try {
+        console.log("Creating new student record...");
+        
+        // POST request
+        let response = await fetch("https://api.klecollege.edu/students", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(studentInfo)
+        });
+        
+        if (!response.ok) {
+            throw new Error("Failed to create student record");
+        }
+        
+        let result = await response.json();
+        
+        console.log("Student created successfully!");
+        console.log("Student ID: " + result.studentId);
+        console.log("Admission Date: " + result.admissionDate);
+        
+        return result;
+        
+    } catch (error) {
+        console.log("Error creating student: " + error.message);
+        return null;
+    }
+}
+
+// Using the async functions
+getStudentData("2024CSE001");
+
+let newStudent = {
+    name: "Amit Kumar",
+    email: "amit@example.com",
+    course: "Electronics",
+    phone: "9988776655"
+};
+
+createNewStudent(newStudent);
+```
+
+---
+
+## 16. DOM Manipulation 🌳
