@@ -311,3 +311,140 @@ Your `app.js` file is now complete!
         ```
 
 Congratulations! You have successfully built and tested a complete Todo API. You can now use this foundation to build more complex applications.
+
+# Todays code (06/8/2025 - wed)
+
+```javascript
+const express = require('express');
+const mongoose = require('mongoose');
+
+// --- Configuration ---
+const app = express();
+const port = process.env.PORT || 3000; // Using a different port to avoid conflict if server.js is running
+const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/todo-cms-single-file';
+
+// --- Middleware ---
+// This line allows our app to understand JSON formatted request bodies
+app.use(express.json());
+
+// --- Mongoose Schema and Model ---
+// This defines the structure of our 'Todo' documents in the MongoDB collection.
+const todoSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  completed: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+// The model is a constructor that allows us to interact with the 'todos' collection.
+const Todo = mongoose.model('TodoSingleFile', todoSchema);
+
+
+// --- API Routes and Controllers ---
+
+// 1. GET all todos
+app.get('/todos', async (req, res) => {
+  try {
+    const todos = await Todo.find();
+    res.json(todos);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// 2. GET a single todo by ID
+app.get('/todos/:id', async (req, res) => {
+  try {
+    const todo = await Todo.findById(req.params.id);
+    if (todo == null) {
+      return res.status(404).json({ message: 'Cannot find todo' });
+    }
+    res.json(todo);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+});
+
+// 3. CREATE a new todo
+app.post('/todos', async (req, res) => {
+  const todo = new Todo({
+    title: req.body.title,
+    description: req.body.description,
+  });
+
+  try {
+    const newTodo = await todo.save();
+    res.status(201).json(newTodo);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
+// 4. UPDATE a todo
+app.put('/todos/:id', async (req, res) => {
+  try {
+    const todo = await Todo.findById(req.params.id);
+    if (todo == null) {
+      return res.status(404).json({ message: 'Cannot find todo' });
+    }
+
+    if (req.body.title != null) {
+      todo.title = req.body.title;
+    }
+    if (req.body.description != null) {
+      todo.description = req.body.description;
+    }
+    if (req.body.completed != null) {
+      todo.completed = req.body.completed;
+    }
+
+    const updatedTodo = await todo.save();
+    res.json(updatedTodo);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
+// 5. DELETE a todo
+app.delete('/todos/:id', async (req, res) => {
+  try {
+    const todo = await Todo.findById(req.params.id);
+    if (todo == null) {
+      return res.status(404).json({ message: 'Cannot find todo' });
+    }
+
+    // In Mongoose v6, `remove()` is deprecated. Use `deleteOne()` instead.
+    await todo.deleteOne();
+    res.json({ message: 'Deleted todo' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+
+// --- Database Connection ---
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Connected to Database');
+    // --- Start the Server ---
+    // We only start the server after the database connection is successful
+    app.listen(port, () => {
+      console.log(`Server is running on port: ${port}`);
+      console.log(`You can test the API at http://localhost:${port}/todos`);
+    });
+  })
+  .catch((error) => {
+    console.error('Database connection error:', error);
+  });
+
+
+
+```
