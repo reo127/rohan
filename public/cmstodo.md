@@ -315,6 +315,68 @@ Congratulations! You have successfully built and tested a complete Todo API. You
 # Todays code (06/8/2025 - wed)
 
 ```javascript
+
+const express = require("express")
+const app = express()
+const mongoose = require("mongoose")
+
+app.use(express.json())
+
+try {
+    mongoose.connect("mongodb://localhost:27017/crmtodo")
+    console.log("database connected ...")
+} catch (error) {
+    console.log(error)
+}
+
+const todoSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        require: [true, 'empty title']
+    },
+    description: {
+        type: String,
+        require: [true, 'empty title']
+    },
+    status: {
+        type: String,
+        default: "pending"
+    }
+})
+
+const Todo = mongoose.model("Todo", todoSchema)
+
+
+app.get("/todos", async function (req, res) {
+    const todos = await Todo.find()
+    res.send(todos)
+})
+
+
+app.post("/addTodos", async function (req, res) {
+    const todos = await Todo.create({
+        title: req.body.title,
+        description: req.body.description
+    })
+    res.send(todos)
+})
+
+app.delete("/deleteTodo", async function(req, res){
+    const todo = Todo.findByIdAndDelete(req.body.id)
+    res.send(todo)
+})
+
+app.listen(8000, function () {
+    console.log("Server is running")
+})
+
+
+
+```
+
+# Improved version of code
+
+```javascript
 const express = require('express');
 const mongoose = require('mongoose');
 
